@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Check, Sparkles } from 'lucide-react'
 
 const PLANS = {
   monthly: [
@@ -126,7 +127,7 @@ export default function Pricing() {
     <section
       id="pricing"
       ref={ref}
-      className="py-28 relative overflow-hidden"
+      className="py-20 md:py-28 relative overflow-hidden"
       style={{ background: '#080808' }}
     >
       <div className="absolute inset-0 grid-bg opacity-40" />
@@ -137,9 +138,9 @@ export default function Pricing() {
         style={{ background: 'radial-gradient(ellipse, rgba(232,73,12,0.07) 0%, transparent 70%)' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 md:mb-14">
           <div className="anim-init delay-0 flex items-center justify-center gap-3 mb-4">
             <span className="block w-8 h-[2px]" style={{ background: '#E8490C' }} />
             <span
@@ -152,21 +153,21 @@ export default function Pricing() {
           </div>
           <h2
             className="anim-init delay-100 font-display uppercase text-white mb-8"
-            style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 0.95 }}
+            style={{ fontSize: 'clamp(32px, 9vw, 72px)', lineHeight: 0.95 }}
           >
             CHOOSE YOUR <span style={{ color: '#E8490C' }}>PLAN</span>
           </h2>
 
           {/* Toggle pill */}
           <div
-            className="anim-init delay-200 inline-flex rounded-lg p-1"
+            className="anim-init delay-200 inline-flex rounded-lg p-1 w-full max-w-[300px] justify-center"
             style={{ background: '#141414', border: '1px solid #242424' }}
           >
             {['monthly', 'yearly'].map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
-                className="font-body text-[13px] font-semibold px-6 py-2 rounded-md capitalize transition-all duration-300"
+                className="font-body text-[12px] sm:text-[13px] font-semibold px-4 sm:px-6 py-2 rounded-md capitalize transition-all duration-300"
                 style={
                   tab === t
                     ? { background: '#E8490C', color: '#fff' }
@@ -192,11 +193,11 @@ export default function Pricing() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {PLANS[tab].map((plan, i) => (
             <div
               key={plan.name}
-              className={`anim-init delay-${(i + 1) * 100} card-lift relative rounded-2xl p-8`}
+              className={`anim-init delay-${(i + 1) * 100} card-lift relative rounded-2xl p-6 sm:p-8`}
               style={
                 plan.hot
                   ? {
@@ -213,9 +214,10 @@ export default function Pricing() {
               {/* Tag badge */}
               {plan.tag && (
                 <div
-                  className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full font-body text-[11px] font-bold tracking-widest uppercase text-white"
+                  className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 sm:px-4 py-1 rounded-full font-body text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-white inline-flex items-center gap-1.5 whitespace-nowrap"
                   style={{ background: '#E8490C' }}
                 >
+                  <Sparkles size={12} />
                   {plan.tag}
                 </div>
               )}
@@ -234,7 +236,7 @@ export default function Pricing() {
               <div className="mb-8 flex items-baseline gap-1">
                 <span className="font-body text-lg text-gray-500">&#8377;</span>
                 <span
-                  className="font-display text-6xl leading-none"
+                  className="font-display text-5xl sm:text-6xl leading-none"
                   style={{ color: plan.hot ? '#E8490C' : '#fff' }}
                 >
                   {plan.price.toLocaleString('en-IN')}
@@ -256,13 +258,13 @@ export default function Pricing() {
                     className="flex items-start gap-3 font-body text-[13px] text-gray-400"
                   >
                     <span
-                      className="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center"
+                      className="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full flex items-center justify-center"
                       style={{
                         background: 'rgba(232,73,12,0.15)',
                         color: '#E8490C',
                       }}
                     >
-                      &#10003;
+                      <Check size={12} strokeWidth={2.8} />
                     </span>
                     {f}
                   </li>

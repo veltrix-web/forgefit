@@ -1,10 +1,18 @@
 import React from 'react'
+import { Facebook, Instagram, MapPin, Twitter, Youtube } from 'lucide-react'
 
 const LINKS = {
   Company: ['Business', 'Franchise', 'Partnership', 'Network'],
   'About Us': ['Blogs', 'Security', 'Careers'],
   Contact: ['Contact Us', 'Privacy Policy', 'Terms & Conditions', 'BMI Calculator'],
 }
+
+const SOCIALS = [
+  { name: 'Facebook', href: '#', icon: Facebook },
+  { name: 'Instagram', href: '#', icon: Instagram },
+  { name: 'Twitter', href: '#', icon: Twitter },
+  { name: 'Youtube', href: '#', icon: Youtube },
+]
 
 export default function Footer() {
   return (
@@ -14,13 +22,13 @@ export default function Footer() {
         borderTop: '1px solid rgba(255,255,255,0.05)',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 sm:gap-12 mb-10 sm:mb-12">
           {/* Brand col */}
           <div>
             <a
               href="#home"
-              className="font-display text-[26px] tracking-wider leading-none"
+              className="font-display text-[24px] sm:text-[26px] tracking-wider leading-none"
             >
               FORGE<span style={{ color: '#E8490C' }}>FIT</span>
             </a>
@@ -29,12 +37,15 @@ export default function Footer() {
               conquer together.
             </p>
 
-            {/* Social icons as text buttons */}
             <div className="flex gap-3 mt-6">
-              {['FB', 'IG', 'TW'].map((s) => (
+              {SOCIALS.map((social) => {
+                const Icon = social.icon
+
+                return (
                 <a
-                  key={s}
-                  href="#"
+                  key={social.name}
+                  href={social.href}
+                  aria-label={social.name}
                   className="w-9 h-9 rounded-md flex items-center justify-center font-body text-[11px] font-bold transition-all duration-300"
                   style={{ background: '#141414', color: '#555', border: '1px solid #242424' }}
                   onMouseEnter={(e) => {
@@ -48,9 +59,10 @@ export default function Footer() {
                     e.currentTarget.style.borderColor = '#242424'
                   }}
                 >
-                  {s}
+                  <Icon size={15} />
                 </a>
-              ))}
+                )
+              })}
             </div>
           </div>
 
@@ -80,17 +92,15 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8"
+          className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 pt-7 sm:pt-8 text-center sm:text-left"
           style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
         >
           <p className="font-body text-[11px] text-gray-700">
             Copyright &copy; 2025 ForgeFit. All rights reserved.
           </p>
-          <p
-            className="font-body text-[11px] font-semibold"
-            style={{ color: 'rgba(232,73,12,0.6)' }}
-          >
-            Crafted for the 90-Day Challenge
+          <p className="font-body text-[11px] font-semibold inline-flex items-center gap-1.5" style={{ color: 'rgba(232,73,12,0.6)' }}>
+            <MapPin size={12} />
+            Crafted in India for the 90-Day Challenge
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { ArrowUpRight, Dumbbell, Menu, X } from 'lucide-react'
 
 const LINKS = [
   { label: 'Home', href: '#home' },
@@ -22,20 +23,25 @@ export default function Navbar() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled
-          ? 'rgba(8,8,8,0.92)'
-          : 'transparent',
+        background: scrolled ? 'rgba(8,8,8,0.92)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#home" className="font-display text-[26px] tracking-wider leading-none select-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
+        <a
+          href="#home"
+          className="inline-flex items-center gap-2 font-display text-[22px] sm:text-[26px] tracking-wider leading-none select-none"
+        >
+          <span
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-md flex items-center justify-center"
+            style={{ background: 'rgba(232,73,12,0.16)', color: '#E8490C' }}
+          >
+            <Dumbbell size={16} strokeWidth={2.2} />
+          </span>
           FORGE<span style={{ color: '#E8490C' }}>FIT</span>
         </a>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {LINKS.map(({ label, href }) => (
             <a
@@ -48,51 +54,37 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
         <a
           href="#pricing"
-          className="hidden md:block btn-brand font-body text-[13px] font-semibold px-6 py-2.5 rounded-sm tracking-wide"
+          className="hidden md:inline-flex items-center gap-2 btn-brand font-body text-[13px] font-semibold px-6 py-2.5 rounded-sm tracking-wide"
         >
           Join Now
+          <ArrowUpRight size={15} />
         </a>
 
-        {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8"
-          onClick={() => setOpen(!open)}
+          className="md:hidden w-9 h-9 rounded-md flex items-center justify-center"
+          style={{
+            border: '1px solid rgba(255,255,255,0.12)',
+            color: open ? '#E8490C' : '#fff',
+          }}
+          onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
-          <span
-            className="block h-[2px] bg-white rounded transition-all duration-300 origin-center"
-            style={{
-              width: open ? '100%' : '100%',
-              transform: open ? 'translateY(7px) rotate(45deg)' : 'none',
-            }}
-          />
-          <span
-            className="block h-[2px] bg-white rounded transition-all duration-300"
-            style={{ opacity: open ? 0 : 1, width: '70%' }}
-          />
-          <span
-            className="block h-[2px] bg-white rounded transition-all duration-300 origin-center"
-            style={{
-              width: '100%',
-              transform: open ? 'translateY(-7px) rotate(-45deg)' : 'none',
-            }}
-          />
+          {open ? <X size={18} /> : <Menu size={18} />}
         </button>
       </div>
 
-      {/* Mobile drawer */}
       <div
         className="md:hidden overflow-hidden transition-all duration-300"
         style={{
-          maxHeight: open ? '320px' : '0',
+          maxHeight: open ? '380px' : '0',
           background: 'rgba(8,8,8,0.98)',
           borderTop: open ? '1px solid rgba(255,255,255,0.06)' : 'none',
         }}
       >
-        <nav className="flex flex-col px-6 py-5 gap-5">
+        <nav className="flex flex-col px-4 sm:px-6 py-5 gap-5">
           {LINKS.map(({ label, href }) => (
             <a
               key={label}
@@ -106,9 +98,10 @@ export default function Navbar() {
           <a
             href="#pricing"
             onClick={() => setOpen(false)}
-            className="btn-brand font-body text-sm font-semibold px-5 py-2.5 rounded-sm text-center mt-1"
+            className="btn-brand font-body text-sm font-semibold px-5 py-2.5 rounded-sm text-center mt-1 inline-flex items-center justify-center gap-2"
           >
             Join Now
+            <ArrowUpRight size={15} />
           </a>
         </nav>
       </div>
